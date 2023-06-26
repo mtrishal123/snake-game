@@ -37,10 +37,8 @@ while is_game_start:
         scoreboard.game_over()
         is_game_start = False
 
-    for segment in snake.turtles:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment) < 10:
+    for segment in snake.turtles[1:]:
+        if snake.head.distance(segment) < 10:
             is_game_start = False
             scoreboard.game_over()
 
