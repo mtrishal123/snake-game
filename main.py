@@ -29,17 +29,18 @@ while is_game_start:
     snake.move()
 
     if snake.head.distance(food) < 15:
-        scoreboard.update_score()
+        scoreboard.increase_score()
         snake.extend()
         food.refresh()
 
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        scoreboard.game_over()
-        is_game_start = False
+        scoreboard.reset()
+        snake.reset_position()
 
     for segment in snake.turtles[1:]:
-        if snake.head.distance(segment) < 10:
-            is_game_start = False
-            scoreboard.game_over()
-
+        if snake.head == segment:
+            pass
+        elif snake.head.distance(segment) < 10:
+            scoreboard.reset()
+            snake.reset_position()
 screen.exitonclick()
