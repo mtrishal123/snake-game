@@ -12,11 +12,14 @@ class Scoreboard(Turtle):
         self.color("white")
         self.ht()
         self.score = 0
-        self.high_score = 0
+        with open("data.txt") as file:
+            self.high_score = int(file.read())
         self.update_score()
 
     def update_score(self):
         self.clear()
+        with open("data.txt", mode="w") as file:
+            file.write(f"{self.high_score}")
         self.score_message()
 
     def score_message(self):
